@@ -1,48 +1,42 @@
 #ifndef _DALI_HPP
 #define _DALI_HPP
 
+#include <Arduino.h>
 #include <stdint.h>
 
-#define DALI_LOW 1
-#define DALI_HIGH 0
-
-union daliDataField{
-  uint16_t forwardFrame;
-  uint8_t data[2];
-};
+#define DALI_LOW HIGH
+#define DALI_HIGH LOW
+#define TIME_HALF_BIT 417
+#define TIME_MIN 376
+#define TIME_MAX 458
+#define TIME_NEW_BIT 625
 
 class Dali{
   private:
   uint8_t pinRx;
   uint8_t pinTx;
-  bool pinRxHasInterrupt;
+  bool interruptEnabled;
   protected:
-  union daliDataField daliData;
   void sendZero(void);
   void sendOne(void);
   void setDaliLow(void);
   void setDaliHigh(void);
-  void sendStart(void);
-  void sendStop(void);
   public:
   void setPinRx(uint8_t);
   void setPinTx(uint8_t);
-  void setPinRxHasInterrupt(bool);
+  void setInterruptEnabled(bool);
   uint8_t getPinRx(void);
   uint8_t getPinTx(void);
-  bool getPinRxHasInterrupt(void);
+  bool getInterruptEnabled(void);
+  void sendStart(void);
+  void sendStop(void);
+  void sendByte(uint8_t);
 };
 
 class DaliPrimary : public Dali{
-  public:
-  uint8_t receive(void);
-  void send(uint16_t);
 };
 
 class DaliSecondary : public Dali{
-  public:
-  uint16_t receive(void);
-  void send(uint8_t):
 };
 
 #endif
