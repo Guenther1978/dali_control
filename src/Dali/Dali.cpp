@@ -1,8 +1,5 @@
 #include "Dali.hpp"
 
-#define DALI_LOW 1
-#define DALI_HIGH 0
-
 uint8_t Dali::getPinRx(void)
   {
     return pinRx;
@@ -11,6 +8,11 @@ uint8_t Dali::getPinRx(void)
 uint8_t Dali::getPinTx(void)
   {
     return pinTx;
+  }
+
+bool Dali::getInverted(void)
+  {
+    return inverted;
   }
 
 bool Dali::getInterruptEnabled(void)
@@ -30,6 +32,11 @@ void Dali::setPinTx(uint8_t pinTx)
     pinMode(pinTx, OUTPUT);
   }
 
+void Dali::setInverted(bool inverted)
+  {
+    this->inverted = inverted;
+  }
+
 void Dali::setInterruptEnabled(bool interruptEnabled)
   {
     this->interruptEnabled = interruptEnabled;
@@ -37,12 +44,12 @@ void Dali::setInterruptEnabled(bool interruptEnabled)
 
 void Dali::setDaliLow(void)
   {
-    digitalWrite(pinTx, DALI_LOW);
+    digitalWrite(pinTx, inverted);
   }
 
 void Dali::setDaliHigh(void)
   {
-    digitalWrite(pinTx, DALI_HIGH);
+    digitalWrite(pinTx, !inverted);
   }
 
 void Dali::sendZero(void)
@@ -68,13 +75,23 @@ void Dali::sendStart(void)
 
 void Dali::sendStop(void)
   {
-    setDaliHigh();
+    startIdle();
     delayMicroseconds(2 * TIME_MAX);
+  }
+
+void Dali::startIdle(void)
+  {
+    pinMode(pinTx, INPUT);
+  }
+
+void Dali::stopIdle(void)
+  {
+    pinMode(pinTx, OUTPUT);
   }
 
 void Dali::sendByte(uint8_t data)
   {
-    for (uint8_t i = 128; i > 0; i >> 1)
+      for (uint8_t i = 128; i > 0; i = i / 2)
       {
         if (i & data)
           {
