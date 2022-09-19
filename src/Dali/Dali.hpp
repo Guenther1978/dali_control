@@ -9,8 +9,14 @@
 #define TIME_MAX 458
 #define TIME_NEW_BIT 625
 
+union forwardFrame{
+  uint16_t data_16;
+  uint8_t data_8[2];
+};
+
 class Dali{
   private:
+  union forwardFrame daliData;
   uint8_t pinRx;
   uint8_t pinTx;
   bool inverted;
@@ -31,15 +37,24 @@ class Dali{
   bool getInterruptEnabled(void);
   void sendStart(void);
   void sendStop(void);
-  void sendByte(uint8_t);
   void startIdle(void);
   void stopIdle(void);
+  bool testIdle(void);
+  void waitStart(void);
+  void sendByte(uint8_t);
+  uint8_t receiveByte(void);
 };
 
 class DaliPrimary : public Dali{
+  public:
+  uint8_t receive(void);
+  void send(uint16_t);
 };
 
 class DaliSecondary : public Dali{
+  public:
+  uint16_t receive(void);
+  void send(uint8_t);
 };
 
 #endif
