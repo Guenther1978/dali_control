@@ -9,11 +9,17 @@ class Dimmer{
   uint8_t number_;
   uint8_t address_;
   uint8_t intensity_;
+  uint8_t intensity_min_;
+  uint8_t intensity_max_;
   uint8_t step_width_;
+  uint8_t delay_cycles_;
   bool darker_;
+  bool darker_has_changed_;
   bool dimmable_;
   bool wait_at_min_;
   bool wait_at_max_;
+  bool new_step_width_at_min_;
+  bool new_step_width_at_max_;
   public:
   void SetNumber(uint8_t);
   uint8_t GetNumber(void);
@@ -21,16 +27,24 @@ class Dimmer{
   uint8_t GetAddress(void);
   void SetIntensity(uint8_t);
   uint8_t GetIntensity(void);
+  void SetIntensityMin(uint8_t);
+  uint8_t GetIntensityMin(void);
+  void SetIntensityMax(uint8_t);
+  uint8_t GetIntensityMax(void);
   void SetStepWidth(uint8_t);
   uint8_t GetStepWidth(void);
   void SetDarker(bool);
   bool GetDarker(void);
+  bool GetDarkerHasChanged(void);
   void SetDimmable(bool);
   bool GetDimmable(void);
   void SetWaitAtMin(bool);
   bool GetWaitAtMin(void);
   void SetWaitAtMax(bool);
-  bool GetWaitAtMax(void);  
+  bool GetWaitAtMax(void);
+  void IncreaseIntensity(void);
+  void DecreaseIntensity(void);
+  void ChangeIntensity(void);
 };
 
 #endif
