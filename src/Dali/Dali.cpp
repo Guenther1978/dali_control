@@ -113,7 +113,7 @@ void Dali::waitStart(void)
 
 void Dali::sendByte(uint8_t data)
   {
-      for (uint8_t i = 128; i > 1; i = i >> 1)
+      for (uint8_t i = 128; i > 0; i = i >> 1)
       {
         if (i & data)
           {
