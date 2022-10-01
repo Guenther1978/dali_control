@@ -130,7 +130,7 @@ uint8_t Dali::receiveByte(void)
   {
     uint8_t data = 0;
     unsigned long startTime;
-    for (uint8_t i = 128; i > 1; i = i >> 1)
+    for (uint8_t i = 128; i > 0; i = i >> 1)
       {
         delayMicroseconds(TIME_NEW_BIT);
         startTime = micros();
