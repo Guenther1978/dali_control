@@ -40,6 +40,22 @@ uint8_t Dimmer::GetIntensityMax(void){
   return intensity_max_;
 }
 
+void Dimmer::SetIntensityDefaultMin(uint8_t intensity){
+  intensity_default_min_ = intensity;
+}
+
+uint8_t Dimmer::GetIntensityDefaultMin(void){
+  return intensity_default_min_;
+}
+
+void Dimmer::SetIntensityDefaultMax(uint8_t intensity){
+  intensity_default_max_ = intensity;
+}
+
+uint8_t Dimmer::GetIntensityDefaultMax(void){
+  return intensity_default_max_;
+}
+
 void Dimmer::SetStepWidth(uint8_t step_width){
   step_width_ = step_width;
 }
@@ -56,8 +72,76 @@ bool Dimmer::GetDarker(void){
   return darker_;
 }
 
-bool Dimmer::GetDarkerHasChanged(void){
-  return darker_has_changed_;
+bool Dimmer::GetIntensityAtMin(void){
+  return intensity_at_min_;
+}
+
+bool Dimmer::GetIntensityAtMax(void){
+  return intensity_at_max_;
+}
+
+void Dimmer::SetWaitAtMin(bool wait){
+  wait_at_min_ = wait;
+}
+
+bool Dimmer::GetWaitAtMin(void){
+  return wait_at_min_;
+}
+
+void Dimmer::SetWaitAtMax(bool wait){
+  wait_at_max_= wait;
+}
+
+bool Dimmer::GetWaitAtMax(void){
+  return wait_at_max_;
+}
+
+void Dimmer::SetDelayAtMin(bool delay){
+  delay_at_min_ = delay;
+}
+
+bool Dimmer::GetDelayAtMin(void){
+  return delay_at_min_;
+}
+
+void Dimmer::SetDelayAtMax(bool delay){
+  delay_at_max_ = delay;
+}
+
+bool Dimmer::GetDelayAtMax(void){
+  return delay_at_max_;
+}
+
+void Dimmer::SetMewMinIntAtMax(bool new_int){
+  new_min_int_at_max_ = new_int;
+}
+
+bool Dimmer::GetNewMinIntAtMax(void){
+  return new_min_int_at_max_;
+}
+
+void Dimmer::SetNewMaxIntAtMin(bool new_int){
+  new_max_int_at_min_ = new_int;
+}
+
+bool Dimmer::GetNewMaxIntAtMin(void){
+  return new_max_int_at_min_;
+}
+
+void Dimmer::SetNewStepWidthAtMin(bool step){
+  new_step_width_at_min_ = step;
+}
+
+bool Dimmer::GetNewStepWidthAtMin(void){
+  return new_step_width_at_min_;
+}
+
+void Dimmer::SetNewStepWidthAtMax(bool step){
+  new_step_width_at_max_ = step;
+}
+
+bool Dimmer::GetNewStepWidthAtMax(void){
+  return new_step_width_at_max_;
 }
 
 void Dimmer::IncreaseIntensity(void){
@@ -72,23 +156,23 @@ void Dimmer::ChangeIntensity(void){
   if (darker_){
     if ((intensity_min_ + step_width_) <= intensity_){
       intensity_ -= step_width_;
-      darker_has_changed_ = false;
+      intensity_at_min_ = false;
       }
     else {
       intensity_ = intensity_min_;
       darker_ = false;
-      darker_has_changed_ = true;
+      intensity_at_min_ = true;
     }
   }
   else {
     if ((intensity_max_ - step_width_) >= intensity_){
       intensity_ += step_width_;
-      darker_has_changed_ = false;
+      intensity_at_max_ = false;
       }
     else {
       intensity_ = intensity_max_;
       darker_ = true;
-      darker_has_changed_ = true;
+      intensity_at_max_ = true;
     }
   }
 }
