@@ -14,6 +14,8 @@ class Dimmer{
   uint8_t intensity_default_min_;
   uint8_t intensity_default_max_;
   uint8_t step_width_;
+  uint8_t step_width_min_;
+  uint8_t step_width_max_;
   uint8_t delay_cycles_;
   bool darker_;
   bool dimmable_;
@@ -44,6 +46,10 @@ class Dimmer{
   uint8_t GetIntensityDefaultMax(void);
   void SetStepWidth(uint8_t);
   uint8_t GetStepWidth(void);
+  void SetStepWidthMin(uint8_t);
+  uint8_t GetStepWidthMin(void);
+  void SetStepWidthMax(uint8_t);
+  uint8_t GetStepWidthMax(void);
   void SetDarker(bool);
   bool GetDarker(void);
   bool GetIntensityAtMin(void);
