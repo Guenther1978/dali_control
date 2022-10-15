@@ -33,3 +33,9 @@
 
 # Zip files
 *.zip
+
+# Temporary files createe by Emacs or Vim
+*~
+*#
+*.swp
+
