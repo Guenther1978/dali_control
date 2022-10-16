@@ -245,7 +245,7 @@ void Dimmer::SetSpeedControlCounter(uint8_t counter)
 
 uint8_t Dimmer::GetSpeedControlCounter(void)
 {
-  return speed_control_.getCounter(void);
+  return speed_control_.getCounter();
 }
 
 void Dimmer::SetSpeedControlDuration(uint8_t duration)
@@ -255,10 +255,10 @@ void Dimmer::SetSpeedControlDuration(uint8_t duration)
 
 uint8_t Dimmer::GetSpeedControlDuration(void)
 {
-  return speed_control_.getDuration(void);
+  return speed_control_.getDuration();
 }
 
-void Dimmer::LetSpeedControlCount(void)
+bool Dimmer::LetSpeedControlCount(void)
 {
   speed_control_.count();
 }

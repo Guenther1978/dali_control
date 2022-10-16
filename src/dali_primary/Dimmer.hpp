@@ -78,7 +78,7 @@ class Dimmer{
   void DecreaseIntensity(void);
   void ChangeIntensity(void);
   void SetSpeedControlCounter(uint8_t);
-  uint8_t GetSpeedControlCoutner(void);
+  uint8_t GetSpeedControlCounter(void);
   void SetSpeedControlDuration(uint8_t);
   uint8_t GetSpeedControlDuration(void);
   bool LetSpeedControlCount(void);
