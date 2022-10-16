@@ -4,8 +4,11 @@
 #include <Arduino.h>
 #include <stdint.h>
 
+#include "../SpeedControl/SpeedControl.hpp>
+
 class Dimmer{
   private:
+  SpeedControl speed_control_;
   uint8_t number_;
   uint8_t address_;
   uint8_t intensity_;
@@ -17,14 +20,13 @@ class Dimmer{
   uint8_t step_width_min_;
   uint8_t step_width_max_;
   uint8_t delay_cycles_;
-  bool darker_;
+  bool delay_enabled_;
   bool dimmable_;
+  bool darker_;
   bool intensity_at_min_;
   bool intensity_at_max_;
   bool wait_at_min_;
   bool wait_at_max_;
-  bool delay_at_min_;
-  bool delay_at_max_;
   bool new_min_int_at_max_;
   bool new_max_int_at_min_;
   bool new_step_width_at_min_;
@@ -60,10 +62,10 @@ class Dimmer{
   bool GetWaitAtMin(void);
   void SetWaitAtMax(bool);
   bool GetWaitAtMax(void);
-  void SetDelayAtMin(bool);
-  bool GetDelayAtMin(void);
-  void SetDelayAtMax(bool);
-  bool GetDelayAtMax(void);
+  void SetDelayEnabled(bool);
+  bool GetDelayEnabled(void);
+  void SetDelayCycles(uint8_t);
+  uint8_t GetDelayCycles(void);
   void SetMewMinIntAtMax(bool);
   bool GetNewMinIntAtMax(void);
   void SetNewMaxIntAtMin(bool);
@@ -75,6 +77,11 @@ class Dimmer{
   void IncreaseIntensity(void);
   void DecreaseIntensity(void);
   void ChangeIntensity(void);
+  void SetSpeedControlCounter(uint8_t);
+  uint8_t GetSpeedControlCoutner(void);
+  void SetSpeedControlDuration(uint8_t);
+  uint8_t GetSpeedControlDuration(void);
+  bool LetSpeecControlCount(void);
 };
 
 #endif
