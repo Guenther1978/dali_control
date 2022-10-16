@@ -238,12 +238,27 @@ if (dimmable_) {
   }
 }
 
-void SetSpeedControlCounter(uint8_t counter)
+void Dimmer::SetSpeedControlCounter(uint8_t counter)
 {
   speed_control_.setCounter(counter);
 }
 
-uint8_t GetSpeedControlCounter(void)
+uint8_t Dimmer::GetSpeedControlCounter(void)
 {
   return speed_control_.getCounter(void);
+}
+
+void Dimmer::SetSpeedControlDuration(uint8_t duration)
+{
+  speed_control_.setDuration(duration);
+}
+
+uint8_t Dimmer::GetSpeedControlDuration(void)
+{
+  return speed_control_.getDuration(void);
+}
+
+void Dimmer::LetSpeedControlCount(void)
+{
+  speed_control_.count();
 }

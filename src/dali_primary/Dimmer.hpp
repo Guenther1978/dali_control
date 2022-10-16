@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <stdint.h>
 
-#include "../SpeedControl/SpeedControl.hpp>
+#include "SpeedControl.hpp"
 
 class Dimmer{
   private:
@@ -81,7 +81,7 @@ class Dimmer{
   uint8_t GetSpeedControlCoutner(void);
   void SetSpeedControlDuration(uint8_t);
   uint8_t GetSpeedControlDuration(void);
-  bool LetSpeecControlCount(void);
+  bool LetSpeedControlCount(void);
 };
 
 #endif
